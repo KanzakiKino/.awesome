@@ -48,6 +48,7 @@ terminal   = "lxterminal"
 editor     = "gvim"
 editor_cmd = editor
 browser    = "vivaldi-stable"
+screenshot = "deepin-screenshot"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -230,7 +231,7 @@ awful.screen.connect_for_each_screen(function(s)
 
                       -- {{{ Mouse bindings
                       root.buttons(gears.table.join(
-                      awful.button({ }, 3, function () mymainmenu:toggle() end),
+                      awful.button({ }, 3, function () mainmenu:toggle() end),
                       awful.button({ }, 4, awful.tag.viewnext),
                       awful.button({ }, 5, awful.tag.viewprev)
                       ))
@@ -240,6 +241,8 @@ awful.screen.connect_for_each_screen(function(s)
                       globalkeys = gears.table.join(
                       awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
                       {description="show help", group="awesome"}),
+                      awful.key({ modkey, "Shift"   }, "s",      function() awful.spawn(screenshot) end,
+                      {description = "screenshot", group = "tag"}),
                       awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
                       {description = "view previous", group = "tag"}),
                       awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
